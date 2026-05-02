@@ -13,8 +13,29 @@ Once loaded, the class definition is stored as class metadata in a JVM-managed m
 
 This area is distinct from the normal object heap in the usual mental model of Java memory, even though it is still ultimately backed by system RAM during program execution.
  That is why saying “classes live in Metaspace, objects live in the heap” is a useful simplification for learning Java memory layout.
-​
-​
+​<img width="2814" height="1536" alt="Gemini_Generated_Image_1lzmli1lzmli1lzm" src="https://github.com/user-attachments/assets/880f7f84-9a28-4caf-ad9e-585d31395d08" />
+
+​A practical mental model
+The easiest way to picture Java class storage is this:
+
+.class file on disk → bytecode stored in a file.
+
+Loaded class → metadata stored in JVM class memory:
+
+In Java 7 and earlier: PermGen (Permanent Generation).
+
+In Java 8 and later: Metaspace.
+
+Person.class → a Class object available to the program at runtime, typically on the heap.
+
+new Person() → a normal object instance stored on the heap.
+
+So the key simplification is:
+
+Class definitions (metadata, methods, statics) live in PermGen (Java 7 and earlier) or Metaspace (Java 8+) in the JVM;
+the Class object (e.g., Person.class) typically lives on the heap.
+
+That Java‑8 cutoff is important because it’s exactly when the JVM switched from PermGen to Metaspace for class‑metadata storage.
 
 What lives there
 The loaded form of a class includes several kinds of runtime information: method definitions, constant-pool data, field and method descriptors, and other metadata the JVM needs for linking and execution.
