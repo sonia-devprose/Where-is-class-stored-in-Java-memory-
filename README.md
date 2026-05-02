@@ -9,7 +9,7 @@ Before a class is loaded, it exists as a .class file on disk that contains Java 
 
 Loaded class in JVM memory
 Once loaded, the class definition is stored as class metadata in a JVM-managed memory area reserved for class information, such as method bytecode, runtime constant-pool data, and structural details about fields and methods.
- In older JVMs this area was commonly described as PermGen, while in Java 8 and later it is known as Metaspace.
+**Note: In older JVMs this area was commonly described as PermGen, while in Java 8 and later it is known as Metaspace.**
 
 This area is distinct from the normal object heap in the usual mental model of Java memory, even though it is still ultimately backed by system RAM during program execution.
 
